@@ -9,7 +9,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "listEmployee", value = "/nhanvien/employees")
+@WebServlet(name = "listEmployee", value = "/nhanvien/list")
+
 public class listEmployee extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,7 +18,9 @@ public class listEmployee extends HttpServlet {
         ArrayList<Employee> employeeList = null;
         employeeList = employeeDAO.getAdminList("");
         request.setAttribute("employeeList", employeeList);
-        RequestDispatcher rd = request.getRequestDispatcher("quanlynhanvien.jsp");
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        RequestDispatcher rd = request.getRequestDispatcher("quanLyNhanvien.jsp");
         rd.forward(request, response);
     }
 

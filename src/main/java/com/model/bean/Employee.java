@@ -1,6 +1,7 @@
 package com.model.bean;
 
-import java.sql.Timestamp;
+//import java.sql.Date;
+import java.util.Date;
 
 public class Employee {
     private String id;
@@ -8,7 +9,7 @@ public class Employee {
     private String address;
     private String email;
     private String phone;
-    private Timestamp birthday;
+    private Date birthday;
     private String username;
     private String password;
 
@@ -20,11 +21,11 @@ public class Employee {
         this.address = address;
     }
 
-    public Timestamp getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Timestamp birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -73,7 +74,7 @@ public class Employee {
         this.username = username;
     }
 
-    public Employee(String id, String name, String address,String email,String phone,Timestamp birthday,String username,String password ) {
+    public Employee(String id, String name, String address,String email,String phone,Date birthday,String username,String password ) {
         super();
         this.id = id;
        this.name = name;

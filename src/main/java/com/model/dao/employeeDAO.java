@@ -19,7 +19,7 @@ public class employeeDAO {
             String sql = "select * from nhanvien where 1";
             rs = ((java.sql.Statement) stmt).executeQuery(sql);
             while(rs.next()) {
-                result.add(new Employee(rs.getString("id"), rs.getString("name"), rs.getString("address"),rs.getString("email"),rs.getString("phone"),rs.getTimestamp("birthday"),rs.getString("username"), rs.getString("password")));
+                result.add(new Employee(rs.getString("id"), rs.getString("name"), rs.getString("address"),rs.getString("email"),rs.getString("phone"),rs.getDate("birthday"),rs.getString("username"), rs.getString("password")));
             }
         }
         catch(Exception ex) {
@@ -41,7 +41,11 @@ public class employeeDAO {
         prst.setString(2,employee.getAddress());
         prst.setString(3,employee.getEmail());
         prst.setString(4,employee.getPhone());
-        prst.setTimestamp(5,employee.getBirthday());
+        if(employee.getBirthday() == null) prst.setDate(5, null);
+        else {
+            java.sql.Date sqlStartDate = new java.sql.Date(employee.getBirthday().getTime());
+            prst.setDate(5, sqlStartDate);
+        }
         System.out.println("vao toi day");
         System.out.println(prst);
         try{
@@ -83,7 +87,13 @@ public class employeeDAO {
         prst.setString(1,employee.getUsername());
         prst.setString(2,employee.getPassword());
         prst.setString(3,employee.getName());
-        prst.setTimestamp(4,employee.getBirthday());
+//        java.sql.Date sqlStartDate = new java.sql.Date(employee.getBirthday().getTime());
+//        prst.setDate(4, sqlStartDate);
+        if(employee.getBirthday() == null) prst.setDate(4, null);
+        else {
+            java.sql.Date sqlStartDate = new java.sql.Date(employee.getBirthday().getTime());
+            prst.setDate(4, sqlStartDate);
+        }
         prst.setString(5,employee.getEmail());
         prst.setString(6,employee.getPhone());
         prst.setString(7,employee.getAddress());
@@ -98,19 +108,45 @@ public class employeeDAO {
             e.printStackTrace();
         }
     }
-    public Employee getEmployeeById(int id) throws SQLException, ClassNotFoundException {
+    public Employee getEmployeeById(int id) {
         if (con == null) {
             con = ConnectionDatabase.getMySQLConnection();
         }
-        String sql = "SELECT * FROM Employee WHERE Id = ? LIMIT 1";
-        prst = con.prepareStatement(sql);
-        prst.setInt(1,id);
-        ResultSet rs = null;
-        rs = prst.executeQuery();
-        while (rs.next())
-        {
-            return new Employee(rs.getString("id"),rs.getString("name"),rs.getString("address"),rs.getString("email"),rs.getString("phone"),rs.getTimestamp("birthday"), rs.getString("username"),rs.getString("password"));
+        try{
+            String sql = "SELECT * FROM nhanvien WHERE Id = ? LIMIT 1";
+            prst = con.prepareStatement(sql);
+            prst.setInt(1,id);
+            ResultSet rs = null;
+            rs = prst.executeQuery();
+            while (rs.next())
+            {
+                return new Employee(rs.getString("id"),rs.getString("name"),rs.getString("address"),rs.getString("email"),rs.getString("phone"),rs.getDate("birthday"), rs.getString("username"),rs.getString("password"));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
         return null;
+    }
+    public Employee getEmployeeByUsernamePassword(String username,String password){
+        if (con == null) {
+            con = ConnectionDatabase.getMySQLConnection();
+        }
+        try{
+            String sql = "SELECT * FROM nhanvien WHERE username = ? and password = ? LIMIT 1";
+            prst = con.prepareStatement(sql);
+            prst.setString(1,username);
+            prst.setString(2,password);
+            ResultSet rs = null;
+            rs = prst.executeQuery();
+            while (rs.next())
+            {
+                return new Employee(rs.getString("id"),rs.getString("name"),rs.getString("address"),rs.getString("email"),rs.getString("phone"),rs.getDate("birthday"), rs.getString("username"),rs.getString("password"));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return  null;
     }
 }

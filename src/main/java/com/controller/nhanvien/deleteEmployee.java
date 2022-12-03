@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "deleteEmployee", value = "/deleteEmployee")
+@WebServlet(name = "deleteEmployee", value = "/nhanvien/xoa")
 public class deleteEmployee extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,7 +19,7 @@ public class deleteEmployee extends HttpServlet {
         catch (Exception e){
             e.printStackTrace();
         }
-        response.sendRedirect("listEmployee");
+        response.sendRedirect("list");
     }
 
     @Override

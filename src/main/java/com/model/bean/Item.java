@@ -1,9 +1,8 @@
 package com.model.bean;
 
 
-import java.sql.Time;
+
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Item {
     private int id;
@@ -60,32 +59,32 @@ public class Item {
         DeleteAt = deleteAt;
     }
 
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(byte[] img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
     private Timestamp CreateAt;
     private Timestamp UpdateAt;
     private Timestamp DeleteAt;
-    public byte[] img;
+    public String img;
     public Item(String tenmon,Category DM,int gia,String mota){
         this.tenmon=tenmon;
         this.DM=DM;
         this.gia=gia;
         this.mota=mota;
     }
-    public Item(String tenmon,Category DM,int gia,String mota,byte[] img){
+    public Item(String tenmon,Category DM,int gia,String mota,String img){
         this.tenmon=tenmon;
         this.DM=DM;
         this.gia=gia;
         this.mota=mota;
         this.img=img;
     }
-    public Item(int id,String tenmon,Category DM,int gia,String mota,Timestamp createAt,Timestamp updateAt,Timestamp deleteAt){
+    public Item(int id,String tenmon,Category DM,int gia,String mota,Timestamp createAt,Timestamp updateAt,Timestamp deleteAt,String img){
         this.id=id;
         this.tenmon=tenmon;
         this.DM=DM;
@@ -94,14 +93,16 @@ public class Item {
         this.CreateAt=createAt;
         this.UpdateAt=updateAt;
         this.DeleteAt=deleteAt;
+        this.img = img;
     }
 
-    public Item(int id , String tenmon, Category DM, int gia, String mota) {
+    public Item(int id , String tenmon, Category DM, int gia, String mota, String img) {
         this.id=id;
         this.tenmon=tenmon;
         this.DM=DM;
         this.gia=gia;
         this.mota=mota;
+        this.img = img;
     }
 
     public int getId() {

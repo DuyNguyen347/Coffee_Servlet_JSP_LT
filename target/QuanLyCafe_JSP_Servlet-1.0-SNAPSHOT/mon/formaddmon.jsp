@@ -169,12 +169,12 @@
                                             response.sendRedirect("/danhmuc/them");
                                         }
                                     %>
-                                    <form action="them" method="post">
+                                    <form action="them" method="post" enctype="multipart/form-data">
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">Tên món</label>
                                             <input type="text" class="form-control" id="basic-default-fullname" name="tenmon" />
                                         </div>
-                                        Danh mục:<select name="DM" id="DM">
+                                        Danh mục:<select class="form-select" name="DM" id="DM" id="exampleFormControlSelect1" aria-label="Default select example">
                                         <%
                                             for(Category i:categories){
                                         %>
@@ -193,9 +193,12 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">Image</label>
-                                            <input type="text" class="form-control" id="basic-default-fullname" placeholder="" />
+                                            <div style="width: 100%;height: 50px;display: flex;position: relative" id="basic-default-fullname">
+                                                <img src="" alt="No image" id="display_img" style="width: 100px;height: 100px;display: block" width="50px" height="50px">
+                                                <input style="flex: 1;height: 40px" type="file" class="form-control" id="input_img" name="img" accept="image/png" onchange="input_imgchange(this)"/>
+                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Add</button>
+                                        <button type="submit" style="margin-top: 45px;" class="btn btn-primary">Add</button>
                                     </form>
                                 </div>
                             </div>
@@ -215,7 +218,20 @@
 </div>
 
 <script src="../assets/vendor/js/bootstrap.js"></script>
+<script>
+    const display_img = document.getElementById("display_img")
+    const input_img = document.getElementById("input_img")
+    const input_imgchange = (fileInput)=>{
 
+        if(fileInput.files && fileInput.files[fileInput.files.length-1]){
+            var reader = new FileReader();
+            reader.onload = (e)=>{
+                display_img.setAttribute("src",e.target.result)
+            }
+            reader.readAsDataURL(fileInput.files[0])
+        }
+    }
+</script>
 
 </body>
 </html>

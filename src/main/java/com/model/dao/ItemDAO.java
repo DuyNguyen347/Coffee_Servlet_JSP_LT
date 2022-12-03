@@ -36,7 +36,8 @@ public class ItemDAO {
                         rs.getString("MoTa"),
                         rs.getTimestamp("CreateAt"),
                         rs.getTimestamp("UpdateAt"),
-                        rs.getTimestamp("DeleteAt")
+                        rs.getTimestamp("DeleteAt"),
+                        rs.getString("Image")
                 );
                 return item;
             }
@@ -60,7 +61,8 @@ public class ItemDAO {
                         rs.getString("MoTa"),
                         rs.getTimestamp("CreateAt"),
                         rs.getTimestamp("UpdateAt"),
-                        rs.getTimestamp("DeleteAt")
+                        rs.getTimestamp("DeleteAt"),
+                        rs.getString("Image")
                 ));
             }
         } catch (SQLException throwables) {
@@ -70,9 +72,10 @@ public class ItemDAO {
     }
     public boolean addNewItem(Item item){
         try {
-            String sql = "INSERT INTO `mon`(`TenMon`, `ID_DanhMuc`, `Gia`, `MoTa`, `CreateAt`) " +
-                    "VALUES ('"+item.tenmon+"',"+item.DM.getId()+",'"+item.gia+"'," +
-                            "'"+item.mota+"','"+sdf.format(new Date())+"')";
+            String img = item.img!=null?"'"+item.img+"'":"null";
+            String sql = "INSERT INTO mon(`TenMon`, ID_DanhMuc, Gia, MoTa, CreateAt,`Image`) " +
+                    "VALUES ('"+ item.tenmon+"',"+item.DM.getId()+",'"+item.gia+"'," +
+                    "'"+item.mota+"','"+sdf.format(new Date())+"',"+img+")";
             System.out.println(sql);
             stmt.execute(sql);
             return true;
@@ -83,8 +86,9 @@ public class ItemDAO {
     }
     public boolean updateItem(Item item){
         try {
-            String sql = "UPDATE `mon` SET `TenMon`='"+item.tenmon+"',`ID_DanhMuc`="+item.DM.getId()+"," +
-                    "`Gia`='"+item.gia+"',`MoTa`='"+item.mota+"',`UpdateAt`='"+sdf.format(new Date())+"',`Image`='"+item.img+"'" +
+            String img = item.img!=null?",`Image`=\'"+item.img+"'":"";
+            String sql = "UPDATE mon SET `TenMon`='"+item.tenmon+"',`ID_DanhMuc`="+item.DM.getId()+"," +
+                    "`Gia`='"+item.gia+"',`MoTa`='"+item.mota+"',`UpdateAt`='"+sdf.format(new Date())+"'"+ img +
                     " WHERE `id`="+item.getId();
             stmt.execute(sql);
             return true;

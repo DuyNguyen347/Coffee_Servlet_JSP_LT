@@ -45,8 +45,8 @@
   --bs-body-font-size: 0.9375rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.53;
-  --bs-body-color: #697a8d;
-  --bs-body-bg: #f5f5f9;
+  --bs-body-color: black;
+  --bs-body-bg: #f4ead7;
 }
 
 *,
@@ -94,7 +94,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 1rem;
   font-weight: 500;
   line-height: 1.1;
-  color: #566a7f;
+  color: black;
 }
 
 h1, .h1 {
@@ -1953,7 +1953,7 @@ progress {
   --bs-table-hover-bg: rgba(67, 89, 113, 0.06);
   width: 100%;
   margin-bottom: 1rem;
-  color: #697a8d;
+  color: black;
   vertical-align: middle;
   border-color: #d9dee3;
 }
@@ -2143,9 +2143,9 @@ progress {
 }
 .form-label {
   margin-bottom: 0.5rem;
-  font-size: 0.75rem;
+  font-size: 1.25rem;
   font-weight: 500;
-  color: #566a7f;
+  color: black;
 }
 
 .col-form-label {
@@ -3838,7 +3838,7 @@ textarea.form-control-lg {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #e9d5af;
   background-clip: border-box;
   border: 0 solid #d9dee3;
   border-radius: 0.5rem;
@@ -3891,8 +3891,9 @@ textarea.form-control-lg {
 .card-header {
   padding: 1.5rem 1.5rem;
   margin-bottom: 0;
-  background-color: transparent;
+  background-color: #d2aa60;
   border-bottom: 0 solid #d9dee3;
+  flex:1;
 }
 .card-header:first-child {
   border-radius: 0.5rem 0.5rem 0 0;
@@ -6228,7 +6229,7 @@ a.invert-bg-dark:hover, a.invert-bg-dark:focus {
   letter-spacing: 1px;
 }
 .table:not(.table-dark) th {
-  color: #566a7f;
+  color: black;
 }
 
 .table-border-bottom-0 tr:last-child td,
@@ -7606,7 +7607,7 @@ button:focus {
 
 .form-label,
 .col-form-label {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: inherit;
 }
